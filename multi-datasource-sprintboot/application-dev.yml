@@ -1,0 +1,31 @@
+logging:
+  config: classpath:logback-dev.xml
+  level:
+    root: info
+
+debug: false
+
+spring:
+  datasource:
+    url: jdbc:mysql://192.168.240.244:3306/svc_fbsb?allowPublicKeyRetrieval=true&useSSL=false&useUnicode=true&characterEncoding=UTF-8&serverTimezone=Hongkong&jdbcCompliantTruncation=false
+    username: svc_fbsb
+    password: FlowSvc$0527@@
+    cluster:
+    - key: cmdb
+      url: jdbc:mysql://192.168.240.75:3306/cnnvd_db?allowPublicKeyRetrieval=true&useSSL=false&useUnicode=true&characterEncoding=UTF-8&serverTimezone=Hongkong
+      username: root
+      password: root
+      driver-class-name: com.mysql.cj.jdbc.Driver
+
+
+dubbo:
+  registry:
+    address: zookeeper://192.168.240.244:8443
+    file: ${user.home}/dubbo-cache/${spring.application.name}/dubbo.cache
+    timeout: 80000
+
+app:
+  zk:
+    host: 192.168.240.244:8443
+  mq:
+    brokers: 192.168.240.244:9092
